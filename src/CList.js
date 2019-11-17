@@ -6,6 +6,7 @@ import {
   Grid,
   Icon,
   Image,
+  Header,
   List,
   Menu,
   Card,
@@ -17,6 +18,7 @@ import {
 const logo = require("./assets/logo.png");
 const astro = require("./assets/astro.png");
 const df19 = require("./assets/df19.jpg");
+const lucas = require("./assets/Lucasarts_logo.svg.png");
 const htiny = require("./assets/heroku-logo-stroke-purple.png");
 
 const stateOptions = [
@@ -26,7 +28,7 @@ const stateOptions = [
   { key: "Galatic Empire", text: "Galatic Empire", value: "Galatic Empire" },
   { key: "Sith", text: "Sith", value: "Sith" },
   { key: "Smuggler", text: "Smuggler", value: "Smuggler" },
-  { key: "Scavenger", text: "Scavenger", value: "Smuggler" },
+  { key: "Scavenger", text: "Scavenger", value: "Scavenger" },
   { key: "Neutral", text: "Neutral", value: "Neutral" },
   { key: "Bounty Hunter", text: "Bounty Hunter", value: "Bounty Hunter" }
 ];
@@ -40,7 +42,7 @@ const characters = [
     hair_color: "blond",
     skin_color: "fair",
     eye_color: "blue",
-    birth_year: "19BBY",
+    birth_year: "66BBY",
     image_url: "luke-skywalker-main_5a38c454_461eebf5",
     gender: "male",
     planet_id: "1",
@@ -57,7 +59,7 @@ const characters = [
     hair_color: "n/a",
     skin_color: "gold",
     eye_color: "yellow",
-    birth_year: "112BBY",
+    birth_year: "76BBY",
     image_url: "C-3PO-See-Threepio_68fe125c",
     gender: "n/a",
     planet_id: "1",
@@ -92,7 +94,7 @@ const characters = [
     hair_color: "brown",
     skin_color: "light",
     eye_color: "brown",
-    birth_year: "19BBY",
+    birth_year: "66BBY",
     image_url: "leia-organa-feature-image_d0f5e953",
     gender: "female",
     planet_id: "2",
@@ -143,7 +145,7 @@ const characters = [
     hair_color: "auburn, white",
     skin_color: "fair",
     eye_color: "blue-gray",
-    birth_year: "57BBY",
+    birth_year: "77BBY",
     image_url: "Obi-Wan-Kenobi_6d775533",
     gender: "male",
     planet_id: "20",
@@ -160,7 +162,7 @@ const characters = [
     hair_color: "blond",
     skin_color: "fair",
     eye_color: "blue",
-    birth_year: "41.9BBY",
+    birth_year: "21BBY",
     image_url: "Anakin-Skywalker_d3330724",
     gender: "male",
     planet_id: "1",
@@ -194,7 +196,7 @@ const characters = [
     hair_color: "brown",
     skin_color: "fair",
     eye_color: "brown",
-    birth_year: "29BBY",
+    birth_year: "68BBY",
     image_url: "han-solo-main_a4c8ff79",
     gender: "male",
     planet_id: "22",
@@ -330,7 +332,7 @@ const characters = [
     hair_color: "none",
     skin_color: "white orange",
     eye_color: "black",
-    birth_year: "4BBY",
+    birth_year: "41BBY",
     image_url: "bb8-main_5111718b",
     gender: "none",
     planet_id: "28",
@@ -347,7 +349,7 @@ const characters = [
     hair_color: "none",
     skin_color: "white",
     eye_color: "yellow",
-    birth_year: "41.9BBY",
+    birth_year: "63BBY",
     image_url: "Darth-Vader_6bda9114",
     gender: "male",
     planet_id: "1",
@@ -376,7 +378,6 @@ const desc = char => {
           <List.Item>Eyes: {char.eye_color} </List.Item>
           <List.Item>Hair: {char.hair_color} </List.Item>
           <List.Item>Skin: {char.skin_color} </List.Item>
-          <List.Item>Eyes: {char.eye_color} </List.Item>
         </List>
       </div>
       <div style={{ float: "right" }}>
@@ -385,9 +386,6 @@ const desc = char => {
           <List.Item>Mass: {char.mass} </List.Item>
           <List.Item>
             Gender: <Icon name={gender} size="large" />{" "}
-          </List.Item>
-          <List.Item>
-            Birth Year: {char.birth_year.replace("BBY", " Yrs.")}{" "}
           </List.Item>
         </List>
       </div>
@@ -495,7 +493,11 @@ export default class CList extends Component {
                       fluid
                       image={chracterImage}
                       header={char.name}
-                      meta={""}
+                      meta={
+                        <List.Item>
+                          {char.birth_year.replace("BBY", " Years Old")}{" "}
+                        </List.Item>
+                      }
                       description={desc(char)}
                       extra={char.affiliations.map(aff => (
                         <Label style={{ fontSize: 12 }}>{aff}</Label>
@@ -512,11 +514,24 @@ export default class CList extends Component {
           style={{ margin: "5em 0em 0em", padding: "5em 0em" }}
         >
           <Container textAlign="center">
-            <List horizontal inverted divided link size="small">
-              <List.Item>
-                StarForce - A StarForce Character Universe Application
-              </List.Item>
-            </List>
+            <Grid divided inverted stackable>
+              <Grid.Column width={16}>
+                <Header inverted as="h4" content="Credits" />
+                <p>
+                  Special Thanks to <b>LucasArts Entertainment Company, LLC</b>{" "}
+                  &amp;{" "}
+                  <a href="http://www.starwars.com" target="_blank">
+                    StarWars.com
+                  </a>{" "}
+                  for all StarsWars related content and imagery.
+                </p>
+              </Grid.Column>
+            </Grid>
+
+            <Divider inverted section />
+            <Image centered size="small" src={logo} />
+            <Image centered size="tiny" src={htiny} />
+            <Image centered size="small" src={lucas} />
           </Container>
         </Segment>
       </div>
