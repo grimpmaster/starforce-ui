@@ -8,6 +8,7 @@ import {
   Image,
   Header,
   List,
+  Statistic,
   Menu,
   Card,
   Segment,
@@ -397,9 +398,11 @@ const menu = resetList => {
   return (
     <>
       <Menu fixed="top" inverted borderless>
-        <Menu.Item onClick={resetList}>
+      
+        <Menu.Item onClick={resetList} header>
           <Image src={htiny} size={"tiny"} style={{ width: 120 }} />
           <Image src={logo} size={"small"} />
+          <Label size='massive'color='violet' circular>19</Label>
         </Menu.Item>
         <Menu.Item position="right">
           <Image src={astro} size={"tiny"} />
@@ -440,6 +443,9 @@ export default class CList extends Component {
 
   render() {
     let { characterList, isLoading } = this.state;
+    let {innerWidth, innerHeight} = window;
+    let w = innerWidth/2;
+    let h = (innerHeight/2)/2 - 100;
     return (
       <div style={{ backgroundColor: "black" }}>
         {menu(this.resetList)}
@@ -450,7 +456,12 @@ export default class CList extends Component {
           style={{ marginTop: "9.7em", textAlign: "center" }}
         >
           {isLoading && (
+            <>
             <Image src={require("./assets/yoda.png")} size="medium" />
+            <h1 style={{position:'absolute', top: h, right: 100, fontSize: 44}}>Full Stack Development</h1>
+            <h2 style={{position:'absolute', top: h+100, right: 100, fontSize: 34}}>Semantic UI React &amp;</h2>
+            <h2 style={{position:'absolute', top: h+150, right: 100, fontSize: 34}}> Java SpringBoot on Heroku</h2>
+            </>
           )}
           {isLoading && (
             <Button
@@ -461,7 +472,7 @@ export default class CList extends Component {
               onClick={this.loadCharacters}
               disabled={!isLoading}
             >
-              Load Characters
+              Load Data from API
             </Button>
           )}
           <Container>
