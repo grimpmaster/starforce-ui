@@ -481,12 +481,11 @@ export default class CList extends Component {
             )}
           </Container>
         </Segment>
-
         <Container style={{ textAlign: "center" }}>
           <Grid columns={3} style={{ marginTop: 2 }}>
             {characterList &&
               characterList.map(char => {
-                var chracterImage =
+                let chracterImage =
                   "https://lumiere-a.akamaihd.net/v1/images/" +
                   char.image_url +
                   ".jpeg?width=300";
